@@ -1,5 +1,6 @@
 import IMask from "imask"
 import "./css/index.css"
+import MicroModal from "micromodal"
 
 const ccBgColor01 = document.querySelector(
   ".cc-bg svg > g g:nth-child(1) > path"
@@ -51,7 +52,7 @@ const cardNumberPattern = {
   mask: [
     {
       mask: "0000 0000 0000 0000",
-      regex: /^4{0-15}/,
+      regex: /^4[0-9]{0,15}/,
       cardType: "visa",
     },
     {
@@ -72,7 +73,6 @@ const cardNumberPattern = {
     )
 
     setCardType(foundMask.cardType)
-    console.log(foundMask.cardType)
 
     return foundMask
   },
@@ -80,8 +80,7 @@ const cardNumberPattern = {
 const cardNumberMask = IMask(cardNumber, cardNumberPattern)
 
 const addButton = document.querySelector("#add-card")
-
-addButton.addEventListener("click", () => {})
+const inputs = document.querySelectorAll("input")
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault()
@@ -120,3 +119,39 @@ function updateExpirationDate(date) {
   const ccExpiration = document.querySelector(".cc-extra .value")
   ccExpiration.innerText = date.length === 0 ? "12/34" : date
 }
+
+addButton.addEventListener("click", () => {
+  let numberValue = inputs[0].value
+  let nameValue = inputs[1].value
+  let dateValue = inputs[2].value
+  let cvcValue = inputs[3].value
+
+  if (!numberValue || !nameValue || !dateValue || !cvcValue) {
+    for (let input of inputs) {
+      !input.value
+        ? input.classList.add("emptyInput")
+        : input.classList.remove("emptyInput")
+    }
+  } else {
+    MicroModal.show("modal-1")
+    for (let input of inputs) {
+      input.value = ""
+      input.classList.remove("emptyInput")
+    }
+    document.querySelector(".cc-holder .value").innerText = "FULANO DA SILVA"
+    document.querySelector(".cc-number").innerText = "1234 5678 9123 4567"
+    document.querySelector(".cc-extra .value").innerText = "12/34"
+    document.querySelector(".cc-security .value").innerText = "123"
+    setCardType("default")
+  }
+})
+
+MicroModal.init({
+  openTrigger: "data-custom-open",
+  closeTrigger: "data-custom-close",
+  openClass: "is-open",
+  disableScroll: true,
+  disableFocus: true,
+  awaitOpenAnimation: true,
+  awaitCloseAnimation: true,
+})

@@ -1,4 +1,38 @@
-/* form */
+@keyframes bounce {
+  0% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+  37% {
+    transform: translateX(2px);
+    timing-function: ease-out;
+  }
+  55% {
+    transform: translateX(-2px);
+    timing-function: ease-in;
+  }
+  73% {
+    transform: translateX(3px);
+    timing-function: ease-out;
+  }
+  82% {
+    transform: translateX(-3px);
+    timing-function: ease-in;
+  }
+  91% {
+    transform: translateX(1px);
+    timing-function: ease-out;
+  }
+  96% {
+    transform: translateX(-1px);
+    timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+}
+
 form {
   max-width: 36rem;
   display: grid;
@@ -65,4 +99,12 @@ form button {
 
 form button:hover {
   filter: brightness(1.1);
+}
+
+.emptyInput {
+  border-color: #b91c1c;
+  outline: 0;
+  animation-name: bounce;
+  animation-duration: 0.5s;
+  animation-delay: 0.25s;
 }

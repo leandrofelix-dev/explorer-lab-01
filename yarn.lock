@@ -59,6 +59,11 @@
   dependencies:
     "has" "^1.0.3"
 
+"micromodal@^0.4.10":
+  "integrity" "sha512-BUrEnzMPFBwK8nOE4xUDYHLrlGlLULQVjpja99tpJQPSUEWgw3kTLp1n1qv0HmKU29AiHE7Y7sMLiRziDK4ghQ=="
+  "resolved" "https://registry.npmjs.org/micromodal/-/micromodal-0.4.10.tgz"
+  "version" "0.4.10"
+
 "nanoid@^3.3.4":
   "integrity" "sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw=="
   "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
